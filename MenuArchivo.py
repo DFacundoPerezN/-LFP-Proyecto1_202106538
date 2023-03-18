@@ -1,6 +1,8 @@
 import tkinter as tk
 import Errores.RevisarErrores as RevisarErrores
 import Guardar
+import Backend.Graficar as Graficar 
+import Backend.Operacion as Operacion 
 
 def abrirArchivo(espacio, ruta):
     espacio.delete("1.0", "end")
@@ -12,9 +14,13 @@ def revisionErrores(ruta):
     print('revisando los errores')
     RevisarErrores.revisar(ruta)
 
-def guardarArchivo(datos,nombreArchivo = "Archivo.txt"):
+def guardarArchivo(datos,nombreArchivo):
     Guardar.guardar(datos, nombreArchivo)
 
+def graficarArchivo(ruta):
+    print('♥♥ creando grafica ♥♥')
+    Operacion.realizarOperaciones(ruta)
+    Graficar.crearGrafica(ruta)
 
 def abrirWindowMA():
     windowP = tk.Tk()
@@ -57,7 +63,7 @@ def abrirWindowMA():
     button3= tk.Button(windowP, text ="Guardar Archivo Como: ", command=lambda: guardarArchivo(textArea1.get("1.0", "end"), textBox2.get()) , bg="#686de0") #Guarda el Archivo con el nombre especificado
     button3.grid(row=1,column=3, padx=10,pady=10)
 
-    button4= tk.Button(windowP, text ="Analisis del Archivo", bg="#7ed6df") #Imprime la informacion presente en el archivo
+    button4= tk.Button(windowP, text ="Analisis del Archivo",command=lambda: graficarArchivo(textBox1.get()), bg="#7ed6df") #Imprime la informacion presente en el archivo
     button4.grid(row=2,column=1, padx=10,pady=10)
 
     button5= tk.Button(windowP, text ="Revisión de Errores",command=lambda: revisionErrores(textBox1.get()), bg="#7ed6df")   #Revisa los Errores del Archivo

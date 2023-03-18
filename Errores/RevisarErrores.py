@@ -3,8 +3,13 @@ def revisar(ruta):
     
         archivo = open (ruta,'r')
         datos = archivo.read()
-        revisarErrores(datos)
+        datosErrores = revisarErrores(datos)
         archivo.close()
+
+        newFile = open ("ERRORES_202106538", "w")
+        newFile.write(datosErrores)
+        newFile.close
+        
 
 def revisarErrores(datos):
     info='{'

@@ -1,4 +1,4 @@
-import EjecutarOperaciones
+import FuncionOperaciones
 listaOperaciones=[]
 class Operacion:
     def __init__(self, tipoOperacion , numeroA, numeroB, resultado, operadionPadre=None) -> None:
@@ -72,17 +72,23 @@ def EV2(texto):
 
 def resultadoOperacion(text):
 
-    tipoOp=ETipoOperacion(text)
+    tipoOp = ETipoOperacion(text)
     #print("Operacion: "+tipoOp)
-    valor1=EV1(text)
-    valor2=EV2(text)
-    resultado =EjecutarOperaciones.hacer(tipoOp,valor1,valor2)
+    valor1 = EV1(text)
+    valor2 = EV2(text)
+    resultado = FuncionOperaciones.hacer(tipoOp,valor1,valor2)
     print(resultado)
+
+    listaOperaciones.append(Operacion(tipoOp,valor1,valor2,resultado))    
     return resultado
 
 prueba= '{"Operacion":"Resta"\n"Valor1":4.5\n"Valor2":[\n"Operacion":"Potencia"\n"Valor1":10\n"Valor2":3\n]}'
-print(resultadoOperacion(prueba))
+#print(resultadoOperacion(prueba))
 
+def realizarOperaciones(texto:str):
+    datos=texto.split(',')
+    for element in datos:
+        realizarOperaciones(element)
 
 '''def obtenerDatosOperacion(text : str):
     datosOp=[]   
