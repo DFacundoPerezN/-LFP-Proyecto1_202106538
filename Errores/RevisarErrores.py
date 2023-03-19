@@ -25,14 +25,18 @@ def revisarErrores(datos):
             for token in linea:
                     nColumna=nColumna+1
                     
-                    if not(token.isdigit()|token.isalpha() or token==" " or token == "{" or token=="}" or token == ":" or token=="," or token == "[" or token=="]" or token == "=" or token == "."):
+                    if not(token.isdigit()|token.isalpha() or token==" " or token == "{" or token=="}" or token == ":" or token=="," or token == "[" or token=="]" or token == "=" or token == "."or token == '"' or token == "-"):
                             nError=nError+1
 
-                            #print("Error # ", nError, ". ",token, "Fila: ",nFila, "  Columna: ",nColumna)
+                            print("Error #", nError, ". ",token, "Fila: ",nFila, "  Columna: ",nColumna)
                             if not(nError==1):
-                                    info+=','
+                                info+=','
                             
-                            info=+formatoError(nError,token,nColumna,nFila)
+                                info+=formatoError(nError,token,nColumna,nFila)
+
+    if nError ==0:
+           print('no hay errores')
+    #print(info)
     return info                            
                                     
 def formatoError(numero, lexema, columna, fila):
@@ -44,7 +48,9 @@ def formatoError(numero, lexema, columna, fila):
         text+='\n\t\t\t    "Columna": '+str(columna)
         text+='\n\t\t\t    "Fila": '+str(fila)
         text+='\n\t    }'
-        text='\n\t}'
+        text+='\n\t}'
+        print('Errores en formato"'+text+'"')
+        return text
         
         
         

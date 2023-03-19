@@ -1,4 +1,9 @@
-import FuncionOperaciones
+try:
+    import FuncionOperaciones
+except:
+    import Backend.FuncionOperaciones as FuncionOperaciones
+
+
 listaOperaciones=[]
 class Operacion:
     def __init__(self, tipoOperacion , numeroA, numeroB, resultado, operadionPadre=None) -> None:
@@ -50,8 +55,9 @@ def obtenerEntreCorchetes(texto):
     
 def ETipoOperacion(texto):
     tipo=''
-    texto=texto[(texto.index('"Operacion":')+13):len(texto)]
     #print("texto para encontrar operacion: +++++"+texto+"++++++")
+    texto=texto[(texto.index('"Operacion":')+13):len(texto)]
+    
     for c in texto:
         if (c=='"'):
             break
@@ -60,6 +66,7 @@ def ETipoOperacion(texto):
     return tipo
 
 def EV(texto,parametro):
+    print(texto)
     texto=texto[(texto.index(parametro)+9):len(texto)]
     #print("texto a buscar numero**"+texto+"**")
     v=obtenerNumero(texto)
@@ -68,7 +75,10 @@ def EV(texto,parametro):
 def EV1(texto):
     return EV(texto,'"Valor1":')
 def EV2(texto):
-    return EV(texto,'"Valor2":')
+    try:
+        return EV(texto,'"Valor2":')
+    except:
+        return None
 
 def resultadoOperacion(text):
 
@@ -82,14 +92,20 @@ def resultadoOperacion(text):
     listaOperaciones.append(Operacion(tipoOp,valor1,valor2,resultado))    
     return resultado
 
-prueba= '{"Operacion":"Resta"\n"Valor1":4.5\n"Valor2":[\n"Operacion":"Potencia"\n"Valor1":10\n"Valor2":3\n]}'
-#print(resultadoOperacion(prueba))
-
 def realizarOperaciones(texto:str):
-    datos=texto.split(',')
-    for element in datos:
-        realizarOperaciones(element)
+    #print(texto)
+    data=texto.split(',')
+    for element in data:
+        resultadoOperacion(element)
 
+prueba= '{\n{\n"Operacion":"Suma"\n"Valor1":4.5\n"Valor2":5.32\n},\n'
+prueba+='{\n"Operacion":"Resta"\n"Valor1":4.5\n"Valor2":[\n"Operacion":"Potencia"\n"Valor1":10\n"Valor2":3\n]},\n'
+prueba+='{\n"Operacion":"Suma"\n"Valor1":[\n"Operacion":"Seno"\n"Valor1":90\n]\n"Valor2":5.32\n}\n'
+prueba+='"Texto":"RealizaciondeOperaciones"\n"Color-Fondo-Nodo":"Amarillo"\n"Color-Fuente-Nodo":"Rojo"\n"Forma-Nodo":"Circulo"\n}'
+
+#realizarOperaciones(prueba)
+
+#Funcion descartada IGNORAR
 '''def obtenerDatosOperacion(text : str):
     datosOp=[]   
 

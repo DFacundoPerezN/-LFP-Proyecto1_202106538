@@ -19,13 +19,15 @@ def hacer(operacion, a= None, b=None): #Metodo para todas las operaciones
         case "INVERSO"|"Inverso":
             return 1/a
         case "SENO"|"Seno":
+            a=(a/180)*math.pi
             return math.sin(a)
         case "COSENO"|"Coseno":
+            a=(a/180)*math.pi
             return math.cos(a) 
         case "TANGENTE"|"Tangente":
+            a=(a/180)*math.pi
             return math.tan(a)
         case _:
             print("¡OPERACIÓN NO VÁLIDA: "+operacion+"!")
 
-
-#print(resultadoOperacion("TANGENTE",1))
+#print(hacer("Seno",90))

@@ -24,4 +24,4 @@ Formas={
 }
 
 
-print(Colores['Rosa'])
+# print(Colores['Rosa'])

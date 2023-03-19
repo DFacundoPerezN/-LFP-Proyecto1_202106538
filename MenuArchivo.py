@@ -2,24 +2,26 @@ import tkinter as tk
 import Errores.RevisarErrores as RevisarErrores
 import Guardar
 import Backend.Graficar as Graficar 
-import Backend.Operacion as Operacion 
+import Backend.Operaciones as Operaciones 
 
 def abrirArchivo(espacio, ruta):
     espacio.delete("1.0", "end")
-    newFile = open (ruta, "r")
-    info = newFile.read()
+    File = open (ruta, "r")
+    info = File.read()
     espacio.insert("insert", info)
 
 def revisionErrores(ruta):
     print('revisando los errores')
     RevisarErrores.revisar(ruta)
 
-def guardarArchivo(datos,nombreArchivo):
+def guardarArchivo(datos,nombreArchivo='Archivo.lfp'):
     Guardar.guardar(datos, nombreArchivo)
 
 def graficarArchivo(ruta):
+    File = open (ruta, "r")
+    info = File.read()
     print('♥♥ creando grafica ♥♥')
-    Operacion.realizarOperaciones(ruta)
+    Operaciones.realizarOperaciones(info)
     Graficar.crearGrafica(ruta)
 
 def abrirWindowMA():

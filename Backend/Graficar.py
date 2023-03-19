@@ -1,6 +1,15 @@
-from Operacion import *
-from Diccionarios import *
+try:
+    from Backend.Operaciones import *
+    from Backend.Diccionarios import *
+except:
+    from Operaciones import *
+    from Diccionarios import *
+
 import os
+
+dirTXT='Graficos/ReporteGrafica.txt'
+dirPNG='Graficos/ReporteGrafica.png'
+dirPDF='Graficos/ReporteGrafica.pdf'
 
 def EncontrarColorNodo(texto):
     color=''
@@ -65,9 +74,11 @@ def crearGrafica(ruta):
     
     contenido=infoGrafica(texto)
 
-    newFile= open('Graficas/ReporteGrafica.txt', 'w')    
+    newFile= open(dirTXT, 'w')    
     newFile.write(contenido)
     newFile.close()
 
-    os.system("dot -Tpng Graficas_Peliculas/ReporteGrafica.txt -o Graficas_Peliculas/ReporteGrafica.png")
-    os.system("dot -Tpdf Graficas_Peliculas/ReporteGrafica.txt -o Graficas_Peliculas/ReporteGrafica.pdf")
+    os.system("dot -Tpng "+ dirTXT +" -o "+dirPNG)
+    os.system("dot -Tpdf "+ dirTXT +" -o "+dirPDF)
+
+#crearGrafica('Archivo.lfp')
