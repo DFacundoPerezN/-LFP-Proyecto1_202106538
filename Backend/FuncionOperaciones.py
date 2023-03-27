@@ -11,9 +11,10 @@ def hacer(operacion, a= None, b=None): #Metodo para todas las operaciones
         case "DIVISION"|"Division":
             return a/b    
         case "POTENCIA"|"Potencia":
+            print('Potencia de:',a,b)
             return a**b 
         case "RAIZ"|"Raiz":
-            return a^(1/b)
+            return a**(1/b)
         case "MOD"|"Mod":
             return a%b
         case "INVERSO"|"Inverso":

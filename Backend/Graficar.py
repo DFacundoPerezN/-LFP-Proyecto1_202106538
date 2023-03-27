@@ -9,7 +9,7 @@ import os
 
 dirTXT='Graficos/ReporteGrafica.txt'
 dirPNG='Graficos/ReporteGrafica.png'
-dirPDF='Graficos/ReporteGrafica.pdf'
+dirPDF='Graficos/RESULTADOS_202106538.pdf'
 
 def EncontrarColorNodo(texto):
     color=''

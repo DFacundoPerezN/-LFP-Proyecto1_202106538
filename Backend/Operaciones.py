@@ -19,6 +19,7 @@ def obtenerNumero(datos):
         
         #print("datos entre corchetes: "+datos+"FIN")
         datos=obtenerEntreCorchetes(datos)
+        print('info del valor: ',datos, '--fin info')
         return resultadoOperacion(datos)
     
     else:   #Metodo si solo son numeros
@@ -30,7 +31,7 @@ def obtenerNumero(datos):
             else:
                 #print("break en:"+d)
                 break
-
+    print('numero encontrado: ',numero)
     numero = float(numero)
     return numero
 
@@ -41,6 +42,7 @@ def obtenerEntreCorchetes(texto):
         
         if(texto[cont]=='['):
             pila+=1
+
         elif(texto[cont]==']'):
             pila-=1
         cont+=1

@@ -20,9 +20,11 @@ def guardarArchivo(datos,nombreArchivo='Archivo.lfp'):
 def graficarArchivo(ruta):
     File = open (ruta, "r")
     info = File.read()
+    info = info.replace(" ","")
     print('♥♥ creando grafica ♥♥')
     Operaciones.realizarOperaciones(info)
     Graficar.crearGrafica(ruta)
+    print('♥♥ Se termino de crear grafica en la carpeta Graficos ♥♥')
 
 def abrirWindowMA():
     windowP = tk.Tk()
