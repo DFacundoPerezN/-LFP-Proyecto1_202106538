@@ -1,14 +1,14 @@
 
 def revisar(ruta):
     
-        archivo = open (ruta,'r')
-        datos = archivo.read()
-        datosErrores = revisarErrores(datos)
-        archivo.close()
+        archivo = open (ruta,'r')       #Se abre archivo segun la ruta indicada
+        datos = archivo.read()          #Se extrae la informacion de este
+        datosErrores = revisarErrores(datos)    #Devuelve si tiene errores con formato
+        archivo.close()                 #cerramos ese archivo
 
-        newFile = open ("ERRORES_202106538", "w")
-        newFile.write(datosErrores)
-        newFile.close
+        newFile = open ("Errores/ERRORES_202106538.json", "w")       #Creamos archivo con la ruta quemada para escribir
+        newFile.write(datosErrores)                             #Escribimos los datos de los Errores
+        newFile.close                                           #Cerramos el archivo
         
 
 def revisarErrores(datos):
@@ -17,25 +17,25 @@ def revisarErrores(datos):
     nFila=0
     nError=0
 
-    lineas =datos.split("\n")
+    lineas =datos.split("\n")   #Se divide por lineas
     for linea in lineas:
             nFila=nFila+1
             nColumna =0
 
-            for token in linea:
+            for c in linea:     #se revisa caracter por caracter de la linea
                     nColumna=nColumna+1
                     
-                    if not(token.isdigit()|token.isalpha() or token==" " or token == "{" or token=="}" or token == ":" or token=="," or token == "[" or token=="]" or token == "=" or token == "."or token == '"' or token == "-"):
+                    if not(c.isdigit()|c.isalpha() or c==" " or c == "{" or c=="}" or c == ":" or c=="," or c == "[" or c=="]" or c == "=" or c == "."or c == '"' or c == "-"):
                             nError=nError+1
 
-                            print("Error #", nError, ". ",token, "Fila: ",nFila, "  Columna: ",nColumna)
+                            print("Error #", nError, ". ",c, "Fila: ",nFila, "  Columna: ",nColumna)
                             if not(nError==1):
                                 info+=','
                             
-                                info+=formatoError(nError,token,nColumna,nFila)
-
+                                info+=formatoError(nError,c,nColumna,nFila)
+    info+='}'
     if nError ==0:
-           print('no hay errores')
+           print('No hay errores')
     #print(info)
     return info                            
                                     

@@ -64,7 +64,6 @@ def infoGrafica(texto):
     textoGrafica+='}'
 
     return textoGrafica
-
 #print(infoGrafica(prueba+'"Texto":"RealizaciondeOperaciones"\n"Color-Fondo-Nodo":"Amarillo"\n"Color-Fuente-Nodo":"Rojo"\n"Forma-Nodo":"Circulo"\n}'))
 
 def crearGrafica(ruta):
